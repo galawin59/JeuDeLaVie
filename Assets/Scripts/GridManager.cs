@@ -4,24 +4,20 @@ using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
-    static GridManager instance = null;
+    private static GridManager instance = null;
     public static GridManager Instance
     {
         get
         {
+            if (instance == null)
+                instance = FindObjectOfType<GridManager>();
             return instance;
         }
+        
     }
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else
-        {
-            Destroy(this);
-        }
+     
         rootTree = new GridData(NbLines, NbColumns);
        
     }
